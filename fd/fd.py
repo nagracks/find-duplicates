@@ -38,6 +38,18 @@ def dir_walker(path, ignore_ext=[], ignore_dirs=[]):
 
 
 def files_with_same_name(path):
+    """Provide list of files with same name
+
+    Parameters
+    ----------
+    path : str
+        Full path to directory
+
+    Returns
+    -------
+    list
+        Full path of Files with same name
+    """
     all_files = list(dir_walker(path))
 
     counter = collections.Counter()
