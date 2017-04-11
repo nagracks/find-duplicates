@@ -37,6 +37,20 @@ def dir_walker(path, ignore_ext=[], ignore_dirs=[]):
             yield os.path.join(root, file_name)
 
 
+def md5_hash(filepath):
+    m = hashlib.md5()
+    try:
+        with open(filepath, 'rb') as f_in:
+            while True:
+                data = f_in.read(1024)
+                if not data:
+                    break
+                m.update(data)
+    except (FileNotFoundError, OSError) as e:
+        print(e)
+    return m.hexdigest()
+
+
 def files_with_same_name(path):
     """Provide list of files with same name
 
