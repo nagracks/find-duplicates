@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import collections
 import hashlib
 
 
@@ -34,3 +35,20 @@ def dir_walker(path, ignore_ext=[], ignore_dirs=[]):
                 )
         for file_name in files:
             yield os.path.join(root, file_name)
+
+
+def files_with_same_name(path):
+    all_files = list(dir_walker(path))
+
+    counter = collections.Counter()
+    for file_name in all_files:
+        base_name = file_name.split('/')[-1]
+        counter[base_name] += 1
+    duplicate_names = [k for k, v in counter.items() if v > 1]
+
+    dup_files = []
+    for file_path in all_files:
+        base_name = file_path.split('/')[-1]
+        if base_name in duplicate_names:
+            dup_files.append(file_path)
+    return dup_files
