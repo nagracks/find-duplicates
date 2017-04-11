@@ -38,6 +38,18 @@ def dir_walker(path, ignore_ext=[], ignore_dirs=[]):
 
 
 def md5_hash(filepath):
+    """Get md5 hash of a file
+
+    Parameters
+    ----------
+    filepath : str
+        Path of file
+
+    Returns
+    -------
+    str
+        md5 hash, hexadecimal number
+    """
     m = hashlib.md5()
     try:
         with open(filepath, 'rb') as f_in:
