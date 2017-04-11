@@ -5,7 +5,7 @@ import os
 import hashlib
 
 
-def dir_walker(path, ignore_ext=[]):
+def dir_walker(path, ignore_ext=[], ignore_dirs=[]):
     """Walks recursively from give path
 
     Parameters
@@ -15,6 +15,8 @@ def dir_walker(path, ignore_ext=[]):
     ignore_ext : list, optional
         Extension that you wan to ignore. If `ignore_ext=['.pyc']` is
         provided then it will not yield `*.pyc` files.
+    ignore_dirs: list, optional
+        List of directories whose files you don't want
 
     Yields
     ------
@@ -22,10 +24,13 @@ def dir_walker(path, ignore_ext=[]):
         File's full path
     """
     for root, dirs, files in os.walk(path):
-        files = [
-                file_
-                for file_ in files
+        dirs[:] = (
+                dir_ for dir_ in dirs
+                if dir_ not in ignore_dirs
+                )
+        files = (
+                file_ for file_ in files
                 if os.path.splitext(file_)[-1] not in ignore_ext
-                ]
+                )
         for file_name in files:
             yield os.path.join(root, file_name)
