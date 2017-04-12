@@ -88,6 +88,18 @@ def files_with_same_name(path):
 
 
 def files_with_same_data(path):
+    """Provide list of files with same data
+
+    Parameters
+    ----------
+    path : str
+        Full path to directory
+
+    Returns
+    -------
+    list
+        Full path of Files with same data
+    """
     record = collections.defaultdict(list)
 
     for file_path in dir_walker(path):
