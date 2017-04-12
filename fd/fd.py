@@ -27,13 +27,10 @@ def dir_walker(path, ignore_ext=[], ignore_dirs=[]):
     for root, dirs, files in os.walk(path):
         # Filter dirs and files with respect to ignore_ext and
         # ignore_dirs
-        dirs[:] = (
-                dir_ for dir_ in dirs
-                if dir_ not in ignore_dirs
-                )
+        dirs[:] = (d for d in dirs if d not in ignore_dirs)
         files = (
-                file_ for file_ in files
-                if os.path.splitext(file_)[-1] not in ignore_ext
+                f for f in files
+                if os.path.splitext(f)[-1] not in ignore_ext
                 )
         for file_name in files:
             yield os.path.join(root, file_name)
