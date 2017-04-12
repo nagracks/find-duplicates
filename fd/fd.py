@@ -78,17 +78,15 @@ def files_with_same_name(path):
     list
         Full path of Files with same name
     """
-    all_files = list(dir_walker(path))
+    record = collections.defaultdict(list)
 
-    counter = collections.Counter()
-    for file_name in all_files:
-        base_name = file_name.split('/')[-1]
-        counter[base_name] += 1
-    duplicate_names = [k for k, v in counter.items() if v > 1]
-
-    dup_files = []
-    for file_path in all_files:
+    for file_path in dir_walker(path):
         base_name = file_path.split('/')[-1]
-        if base_name in duplicate_names:
-            dup_files.append(file_path)
-    return dup_files
+        record[base_name].append(file_path)
+
+    for base_name in record.keys():
+        paths = record[base_name]
+        if len(paths) > 1:
+            for path in paths:
+                yield path
+
