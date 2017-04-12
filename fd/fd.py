@@ -86,3 +86,15 @@ def files_with_same_name(path):
         if len(paths) > 1:
             yield paths
 
+
+def files_with_same_data(path):
+    record = collections.defaultdict(list)
+
+    for file_path in dir_walker(path):
+        hash_value = md5_hash(file_path)
+        record[hash_value].append(file_path)
+
+    for hash_value in record.keys():
+        paths = record[hash_value]
+        if len(paths) > 1:
+            yield paths
