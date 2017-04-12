@@ -84,6 +84,5 @@ def files_with_same_name(path):
     for base_name in record.keys():
         paths = record[base_name]
         if len(paths) > 1:
-            for path in paths:
-                yield path
+            yield paths
 
