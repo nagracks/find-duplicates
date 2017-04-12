@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os
 import collections
 import hashlib
+import os
 
 
 def dir_walker(path, ignore_ext=[], ignore_dirs=[]):
