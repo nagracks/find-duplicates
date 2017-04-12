@@ -25,6 +25,8 @@ def dir_walker(path, ignore_ext=[], ignore_dirs=[]):
         File's full path
     """
     for root, dirs, files in os.walk(path):
+        # Filter dirs and files with respect to ignore_ext and
+        # ignore_dirs
         dirs[:] = (
                 dir_ for dir_ in dirs
                 if dir_ not in ignore_dirs
