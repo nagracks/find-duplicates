@@ -113,6 +113,18 @@ def files_with_same_data(path):
 
 
 def files_with_same_size(path):
+    """Provide list of files with same size
+
+    Parameters
+    ----------
+    path : str
+        Full path to directory
+
+    Returns
+    -------
+    list
+        Full path of Files with same size
+    """
     record = collections.defaultdict(list)
 
     for file_path in dir_walker(path):
