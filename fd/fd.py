@@ -98,3 +98,16 @@ def files_with_same_data(path):
         paths = record[hash_value]
         if len(paths) > 1:
             yield paths
+
+
+def files_with_same_size(path):
+    record = collections.defaultdict(list)
+
+    for file_path in dir_walker(path):
+        size = os.path.getsize(file_path)
+        record[size].append(file_path)
+
+    for size in record.keys():
+        paths = record[size]
+        if len(paths) > 1:
+            yield paths
