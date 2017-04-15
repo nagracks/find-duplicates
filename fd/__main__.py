@@ -12,14 +12,14 @@ from fd import (
 technique = args['technique']
 if technique == 'n':
     print("File with same name")
-    for i in files_with_same_name(args['path']):
-        duplicates_summary(i)
+    for files_list in files_with_same_name(args['path']):
+        duplicates_summary(files_list)
 
 elif technique == 's':
     print("Files with same size")
-    for i in files_with_same_size(args['path']):
-        duplicates_summary(i)
+    for files_list in files_with_same_size(args['path']):
+        duplicates_summary(files_list)
 else:
     print("Files with same data")
-    for i in files_with_same_data(args['path']):
-        duplicates_summary(i)
+    for files_list in files_with_same_data(args['path']):
+        duplicates_summary(files_list)
