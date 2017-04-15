@@ -57,8 +57,8 @@ def md5_hash(filepath):
                 if not data:
                     break
                 m.update(data)
-    except (FileNotFoundError, OSError) as e:
-        print(e)
+    except (OSError, IOError) as e:
+        pass
     return m.hexdigest()
 
 
