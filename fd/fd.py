@@ -140,7 +140,7 @@ def files_with_same_size(path):
         raise(e)
 
 
-def duplicates_summary(duplicate_files_list):
+def print_duplicates_summary(duplicate_files_list):
     file_name = duplicate_files_list[0]
     number_of_duplicate_files = len(duplicate_files_list)
     print("{} duplicates:: {}".format(number_of_duplicate_files, file_name))
