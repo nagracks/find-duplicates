@@ -103,8 +103,11 @@ def files_with_same_data(path):
     record = collections.defaultdict(list)
 
     for file_path in dir_walker(path):
-        hash_value = md5_hash(file_path)
-        record[hash_value].append(file_path)
+        try:
+            hash_value = md5_hash(file_path)
+            record[hash_value].append(file_path)
+        except (FileNotFoundError, OSError) as e:
+            pass
 
     for hash_value in record.keys():
         paths = record[hash_value]
@@ -127,14 +130,14 @@ def files_with_same_size(path):
     """
     record = collections.defaultdict(list)
 
-    try:
-        for file_path in dir_walker(path):
+    for file_path in dir_walker(path):
+        try:
             size = os.path.getsize(file_path)
             record[size].append(file_path)
+        except (FileNotFoundError, OSError) as e:
+            pass
 
-        for size in record.keys():
-            paths = record[size]
-            if len(paths) > 1:
-                yield paths
-    except Exception as e:
-        raise(e)
+    for size in record.keys():
+        paths = record[size]
+        if len(paths) > 1:
+            yield paths
