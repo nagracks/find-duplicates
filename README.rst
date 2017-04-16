@@ -1,5 +1,5 @@
 find-duplicates
 ======
 
-Work in progress
-
+It is a work in progress..
+======
