@@ -19,6 +19,7 @@ parser.add_argument(
         dest='technique',
         action='store',
         default='d',
+        metavar='(name/size/data)',
         help="""
         Values can be files with same [n]ame, files with same [s]ize or
         files with same [d]ata
