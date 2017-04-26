@@ -8,10 +8,8 @@ parser = argparse.ArgumentParser(
                 description='Find Duplicates'
                 )
 parser.add_argument(
-        '-p', '--path',
         dest='path',
         action='store',
-        required=True,
         help="""
         Full path
         """
